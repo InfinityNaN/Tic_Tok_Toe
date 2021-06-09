@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Icon from "./Components/Icon"
-// import react toastify
+// importing react toastify
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import react strap
+// importing react strap
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Row, Col, Card, CardBody, Container } from 'reactstrap';
 import "./style.css"
@@ -18,7 +18,7 @@ import "./style.css"
        setIsCross(false)
        setWinMessage("")
        setSelect("x")
-       ticArray.fill("")
+       ticArray.fill("empty")
     }
 
     const checkIsWinner=()=>{
@@ -88,14 +88,23 @@ import "./style.css"
         checkIsWinner()
     }
     return(
-        <Container>
+        <Container className="p-5">
+            <ToastContainer position="bottom-center"></ToastContainer>
             <Row>
-                <Col md={6} className="offset-md-3">
-                    <Card>
-                        <CardBody>
 
-                        </CardBody>
-                    </Card>
+                <Button color="success" onClick={reloadGame}> Reload Game </Button>
+                <Col md={6} className="offset-md-3">
+                    <div className="grid">
+                         {ticArray.map((value, index) =>(
+                             <Card onClick={() => changeItem(index)}>
+                                 <CardBody className="box">
+                                     {console.log(value, index)}
+                                     <Icon choice={ticArray[index]}/> 
+                                 </CardBody>
+                             </Card>
+                             
+                         ))} 
+                    </div>
                 </Col>
             </Row>
         </Container>
