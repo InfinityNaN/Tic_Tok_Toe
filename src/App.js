@@ -76,7 +76,7 @@ import "./style.css"
 
     const changeItem=(index)=>{
         if(winMessage){
-            return toast(winMessage , {type: "success"} )
+            return toast("Game is already over,Reload it." , {type: "success"} )
         }
         if (ticArray[index] === "empty"){
              ticArray[index] =  isCross? "wrong" : "circle"
@@ -91,14 +91,28 @@ import "./style.css"
         <Container className="p-5">
             <ToastContainer position="bottom-center"></ToastContainer>
             <Row>
-
-                <Button color="success" onClick={reloadGame}> Reload Game </Button>
                 <Col md={6} className="offset-md-3">
+                    {winMessage ? (
+                        <div className="mb-2 mt-2 text-center">
+                              <h1 className="text-success text-uppercase text-center "> 
+                              {winMessage} 
+                              </h1>
+                              <Button
+                              color="success"
+                              onclick={reloadGame}
+                              >
+                               Reload Game
+                              </Button>
+                        </div>
+                    ): (
+                        <h1 className="text-light text-center">
+                              {isCross ? "Wrong's" : "Circle's"} turn
+                        </h1>
+                    )}
                     <div className="grid">
                          {ticArray.map((value, index) =>(
-                             <Card onClick={() => changeItem(index)}>
+                             <Card color="warning"onClick= {()=>changeItem(index)}>
                                  <CardBody className="box">
-                                     {console.log(value, index)}
                                      <Icon choice={ticArray[index]}/> 
                                  </CardBody>
                              </Card>
