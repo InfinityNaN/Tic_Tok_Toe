@@ -1,5 +1,5 @@
 body{
-    background: #000000;
+    background: #03e748;
 }
 .grid{
     display: grid;
@@ -16,5 +16,5 @@ body{
 }
 .icon{
     font-size:35px;
-    color: #000000;
+    color: #f70707;
 }
